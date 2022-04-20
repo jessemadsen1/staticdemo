@@ -1,12 +1,12 @@
-﻿ @page "/"
+﻿@page "/"
 <PageTitle>Index</PageTitle>
 <h1>Hello, Static Web Apps!</h1>
 <h3>This is Feature 1</h3>
-<input @bind=increment type='number'/>
+<input @bind=increment type='number' />
 <button @onclick=buttonClick>Click Me</button>
 <p>You clicked @timesClicked, as recently as @lastClicked</p>
 <label>Your Name
-    <input type='text' @bind=userName/>
+    <input type='text' @bind=userName />
 </label>
 <button @onclick=callApi>Greet Me!</button>
 <p>@apiResponse</p>
@@ -19,12 +19,12 @@
     DateTime lastClicked;
     void buttonClick()
     {
-        timesClicked+=increment;
+        timesClicked += increment;
         lastClicked = DateTime.Now;
     }
     async Task callApi()
     {
         var httpClient = new HttpClient();
-        apiResponse = await httpClient.GetStringAsync($"/api/HttpTrigger1?name={userName}");
+        apiResponse = await httpClient.GetStringAsync($"api/HttpTrigger1?name={userName}");
     }
 }
