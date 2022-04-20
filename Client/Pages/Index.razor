@@ -1,7 +1,30 @@
-﻿@page "/"
-
+﻿ @page "/"
 <PageTitle>Index</PageTitle>
-
-<h1>Hello, world! This is new branch</h1>
-
-
+<h1>Hello, Static Web Apps!</h1>
+<h3>This is Feature 1</h3>
+<input @bind=increment type='number'/>
+<button @onclick=buttonClick>Click Me</button>
+<p>You clicked @timesClicked, as recently as @lastClicked</p>
+<label>Your Name
+    <input type='text' @bind=userName/>
+</label>
+<button @onclick=callApi>Greet Me!</button>
+<p>@apiResponse</p>
+@code
+{
+    string userName;
+    string apiResponse = "Enter your name and click 'Greet Me'";
+    int timesClicked = 0;
+    int increment = 1;
+    DateTime lastClicked;
+    void buttonClick()
+    {
+        timesClicked+=increment;
+        lastClicked = DateTime.Now;
+    }
+    async Task callApi()
+    {
+        var httpClient = new HttpClient();
+        apiResponse = await httpClient.GetStringAsync($"/api/HttpTrigger1?name={userName}");
+    }
+}
