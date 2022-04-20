@@ -1,4 +1,6 @@
 ﻿@page "/"
+@inject HttpClient httpClient
+
 <PageTitle>Index</PageTitle>
 <h1>Hello, Static Web Apps!</h1>
 <h3>This is Feature 1</h3>
@@ -24,7 +26,6 @@
     }
     async Task callApi()
     {
-        var httpClient = new HttpClient();
-        apiResponse = await httpClient.GetStringAsync($"api/HttpTrigger1?name={userName}");
+        apiResponse = await httpClient.GetStringAsync($"/api/HttpTrigger1?name={userName}");
     }
 }
